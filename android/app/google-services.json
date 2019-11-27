@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "941136174275",
+    "firebase_url": "https://tryb-app.firebaseio.com",
+    "project_id": "tryb-app",
+    "storage_bucket": "tryb-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941136174275:android:217aba7601138ec0965676",
+        "android_client_info": {
+          "package_name": "com.trybglobal.trybapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941136174275-3fdb8nhd3vvu3f3em01rhjllb8lh1ros.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGyzf1CGI5Vq6JfA4siJgd78pFqU4POmc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941136174275-3fdb8nhd3vvu3f3em01rhjllb8lh1ros.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "941136174275-523qfanrs3cqtavnro2cg8d6r7nrge5f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.trybglobal.trybapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
