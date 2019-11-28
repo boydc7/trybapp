@@ -7,7 +7,7 @@ class ProfileApi extends BaseApi {
 
   static ProfileApi get instance => _instance;
 
-  Future<List<TrybProfile>> getMyProfiles() async {
+  Future<Iterable<TrybProfile>> getMyProfiles() async {
     var profilesSnapshot = await query('profiles').getDocuments();
 
     var results = getQueryResults<TrybProfile>(

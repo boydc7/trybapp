@@ -4,6 +4,12 @@ import 'package:trybapp/services/auth_service.dart';
 import 'package:trybapp/services/core_service.dart';
 import 'package:trybapp/services/log_manager.dart';
 import 'package:trybapp/theme.dart';
+import 'package:trybapp/views/auth.dart';
+import 'package:trybapp/views/email.dart';
+import 'package:trybapp/views/email_verify.dart';
+import 'package:trybapp/views/onboarding.dart';
+import 'package:trybapp/views/phone.dart';
+import 'package:trybapp/views/phone_verify.dart';
 import 'package:trybapp/views/redirect.dart';
 
 class TrybApp extends StatefulWidget {
@@ -53,6 +59,12 @@ class _TrybAppState extends State<TrybApp> with WidgetsBindingObserver {
       initialRoute: '/',
       routes: {
         '/': (context) => RedirectPage(),
+        '/onboarding': (context) => OnBoardingPage(),
+        '/auth': (context) => AuthPage(),
+        '/email': (context) => EmailPage(),
+        '/email/verify': (context) => EmailVerifyPage(),
+        '/phone': (context) => PhonePage(),
+        '/phone/verify': (context) => PhoneVerifyPage(),
       },
     );
   }

@@ -334,11 +334,11 @@ class AuthService {
       return;
     }
 
-    _profiles = await ProfileApi.instance.getMyProfiles();
+    _profiles = (await ProfileApi.instance.getMyProfiles()).toList();
 
     _currentProfile = _profiles?.firstWhere(
       (p) => p.isDefault,
-      orElse: () => _profiles.first,
+      orElse: () => _profiles.isEmpty ? null : _profiles.first,
     );
   }
 

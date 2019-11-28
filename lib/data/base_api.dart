@@ -12,7 +12,7 @@ abstract class BaseApi {
     );
   }
 
-  List<T> getQueryResults<T>(
+  Iterable<T> getQueryResults<T>(
     QuerySnapshot snapshot,
     Function resultMap,
   ) {

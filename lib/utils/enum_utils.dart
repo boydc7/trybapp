@@ -8,7 +8,7 @@ class Enums {
 
 class EnumValues<T> {
   Map<String, T> map;
-  Map<T, String> reverseMap;
+  Map<T, String> _reverseMap;
 
   EnumValues(this.map);
 
@@ -20,10 +20,10 @@ class EnumValues<T> {
     );
   }
 
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => MapEntry(v, k));
+  Map<T, String> get reverseMap {
+    if (_reverseMap == null) {
+      _reverseMap = map.map((k, v) => MapEntry(v, k));
     }
-    return reverseMap;
+    return _reverseMap;
   }
 }
