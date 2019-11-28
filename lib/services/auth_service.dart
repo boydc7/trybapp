@@ -5,6 +5,11 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:trybapp/data/account_api.dart';
+import 'package:trybapp/data/profile_api.dart';
+import 'package:trybapp/enums/account_type.dart';
+import 'package:trybapp/models/tryb_account.dart';
+import 'package:trybapp/models/tryb_profile.dart';
 
 import 'device_storage.dart';
 import 'log_manager.dart';
@@ -38,11 +43,13 @@ class AuthService {
 
   FirebaseUser get currentGfbUser => _currentGfbUser;
 
+  String get currentAccountId => _currentGfbUser?.uid;
+
   List<TrybProfile> get profiles => _profiles;
   Observable<FirebaseUser> _onFirebaseAuthStateChangedObservable;
   Observable<AuthState> get onAuthStateChanged => _authStateChangeSubject.stream;
 
-  bool isAuthenticated() => _currentAccount != null && _trybApiKey != null && _currentGfbUser != null;
+  bool isAuthenticated() => _currentAccount != null && _currentGfbUser != null;
 
   void dispose() {
     _authStateChangeSubject.close();
@@ -54,6 +61,11 @@ class AuthService {
       _setAuthState(AuthState.Authenticating);
 
       await _initGfbUser();
+
+      if (_currentGfbUser == null) {
+        await signOut();
+        return;
+      }
 
       await _syncTrybAccount();
 
@@ -96,7 +108,7 @@ class AuthService {
     _setAuthState(AuthState.Authenticated);
   }
 
-  Future<void> signOut() async {
+  Future<void> signOut([String errorReason]) async {
     _setAuthState(AuthState.Unauthenticated);
 
     _profiles = null;
@@ -106,6 +118,10 @@ class AuthService {
     if (_currentGfbUser != null || await _firebaseAuth.currentUser() != null) {
       _currentGfbUser = null;
       await _firebaseAuth.signOut();
+    }
+
+    if (errorReason != null) {
+      _log.logDebug(errorReason);
     }
   }
 
@@ -217,33 +233,46 @@ class AuthService {
     }
   }
 
-  Future<void> connectFirebaseUser() async {
-    return _currentGfbUser.getIdToken().then((res) async {
-      var connectAccountResponse = await AccountApi.instance().connectAccount(
-          res.token,
-          TrybAccount(
-            accountType: AccountType.User,
-            id: 0,
-            name: _currentGfbUser.displayName,
-            avatar: _currentGfbUser.photoUrl,
-            authId: _currentGfbUser.uid,
-            email: _currentGfbUser.email,
-            phoneNumber: _currentGfbUser.phoneNumber,
-            isEmailVerified: _currentGfbUser.isEmailVerified,
-          ));
+  void connectFirebaseUser({
+    String authProviderToken,
+    String authProviderId,
+  }) async {
+    if (_currentGfbUser == null) {
+      await signOut('No valid GFB user');
+      return;
+    }
 
-      if (connectAccountResponse == null || connectAccountResponse.apiKey == null) {
-        await signOut();
-        return;
+    try {
+      var firstProviderData =
+          (_currentGfbUser.providerData?.length ?? 0) <= 0 ? null : _currentGfbUser.providerData.first;
+
+      if (authProviderId == null || authProviderId.isEmpty) {
+        authProviderId = firstProviderData?.uid;
       }
+
+      /// connect the account, creating or retrieving the master user id
+      /// and account api key we'll use the continue on
+      _currentAccount = await AccountApi.instance.connectAccount(
+        TrybAccount(
+          accountType: AccountType.user,
+          id: _currentGfbUser.uid,
+          name: _currentGfbUser.displayName ?? firstProviderData?.displayName,
+          authProvider: firstProviderData?.providerId ?? _currentGfbUser.providerId,
+          authProviderToken: authProviderToken,
+          avatar: _currentGfbUser.photoUrl ?? firstProviderData?.photoUrl,
+          email: _currentGfbUser.email ?? firstProviderData?.email,
+          phoneNumber: _currentGfbUser.phoneNumber ?? firstProviderData?.phoneNumber,
+          isEmailVerified: _currentGfbUser.isEmailVerified,
+        ),
+      );
 
       await _syncTrybAccount();
 
       _setAuthState(AuthState.Authenticated);
-    }).catchError((err) async {
-      await signOut();
-      throw err;
-    });
+    } catch (x) {
+      await signOut('Could not connect firebase user');
+      rethrow;
+    }
   }
 
   Future<void> onAuthenticate(AuthCredential credential, [bool isNewLogin = true]) async {
@@ -286,8 +315,8 @@ class AuthService {
     }
 
     // We have valid objects, do they match?
-    if (_currentAccount.authId != _currentGfbUser.uid) {
-      _log.logWarning('Mismatch UID in auth verify - gfb:[${_currentGfbUser.uid}], tapi:[${_currentAccount.authId}]');
+    if (_currentAccount.id != _currentGfbUser.uid) {
+      _log.logWarning('Mismatch UID in auth verify - gfb:[${_currentGfbUser.uid}], tapi:[${_currentAccount.id}]');
       return false;
     }
 
@@ -295,20 +324,17 @@ class AuthService {
   }
 
   Future<void> _syncTrybAccount() async {
-    _trybApiKey = await DeviceStorage.getTrybApiKey();
-
-    if (_trybApiKey == null) {
-      return;
-    }
-
     // Go to the Tryb api and get the current account, profiles
-    _currentAccount = await AccountApi.instance().getMyAccount();
+    if (_currentAccount == null || _currentAccount.id != _currentGfbUser.uid) {
+      _currentAccount = await AccountApi.instance.getMyAccount();
+    }
 
     if (_currentAccount == null) {
+      await signOut();
       return;
     }
 
-    _profiles = await ProfileApi.instance().getMyProfiles();
+    _profiles = await ProfileApi.instance.getMyProfiles();
 
     _currentProfile = _profiles?.firstWhere(
       (p) => p.isDefault,

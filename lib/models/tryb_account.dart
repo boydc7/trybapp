@@ -1,8 +1,12 @@
-class TrybAccount {
-  int id;
-  int defaultProfileId;
+import 'package:trybapp/enums/account_type.dart';
+import 'package:trybapp/models/base_model.dart';
+
+class TrybAccount extends BaseModel {
+  String id;
+  String defaultProfileId;
   String name;
-  String authId;
+  String authProvider;
+  String authProviderToken;
   AccountType accountType;
   String email;
   String avatar;
@@ -13,30 +17,26 @@ class TrybAccount {
     this.id,
     this.defaultProfileId,
     this.name,
-    this.authId,
+    this.authProvider,
+    this.authProviderToken,
     this.accountType,
     this.email,
     this.avatar,
     this.phoneNumber,
     this.isEmailVerified,
-  }) {}
+  }) : super();
 
-  TrybAccount.fromJson(Map<String, dynamic> json) {
-    fromMap(json);
-  }
-
-  fromMap(Map<String, dynamic> json) {
-    super.fromMap(json);
+  TrybAccount.fromJson(Map<String, dynamic> json) : super.fromJson(json) {
     id = json['id'];
     defaultProfileId = json['defaultProfileId'];
     name = json['name'];
-    authId = json['authId'];
-    accountType = JsonConverters.fromJson(json['accountType'], 'AccountType', context);
+    authProvider = json['authProvider'];
+    authProviderToken = json['authProviderToken'];
+    accountType = accountTypeValues.map[json['accountType']];
     email = json['email'];
     avatar = json['avatar'];
     phoneNumber = json['phoneNumber'];
     isEmailVerified = json['isEmailVerified'];
-    return this;
   }
 
   Map<String, dynamic> toJson() => super.toJson()
@@ -44,8 +44,9 @@ class TrybAccount {
       'id': id,
       'defaultProfileId': defaultProfileId,
       'name': name,
-      'authId': authId,
-      'accountType': JsonConverters.toJson(accountType, 'AccountType', context),
+      'authProvider': authProvider,
+      'authProviderToken': authProviderToken,
+      'accountType': accountTypeValues.reverseMap[accountType],
       'email': email,
       'avatar': avatar,
       'phoneNumber': phoneNumber,
