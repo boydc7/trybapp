@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  cached_network_image:
   cloud_firestore:
   cupertino_icons:
   device_info:
@@ -19,10 +20,15 @@ dependencies:
   firebase_messaging:
   flutter_facebook_login:
   flutter_svg:
+  flutter_tags:
+  flutter_typeahead:
   font_awesome_flutter:
+  google_maps_flutter:
   google_sign_in:
   intl:
+  location:
   modal_progress_hud:
+  overlay_container:
   permission_handler:
   rxdart:
   shared_preferences:

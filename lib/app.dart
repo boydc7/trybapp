@@ -7,6 +7,7 @@ import 'package:trybapp/theme.dart';
 import 'package:trybapp/views/auth.dart';
 import 'package:trybapp/views/email.dart';
 import 'package:trybapp/views/email_verify.dart';
+import 'package:trybapp/views/home.dart';
 import 'package:trybapp/views/onboarding.dart';
 import 'package:trybapp/views/phone.dart';
 import 'package:trybapp/views/phone_verify.dart';
@@ -65,6 +66,24 @@ class _TrybAppState extends State<TrybApp> with WidgetsBindingObserver {
         '/email/verify': (context) => EmailVerifyPage(),
         '/phone': (context) => PhonePage(),
         '/phone/verify': (context) => PhoneVerifyPage(),
+        '/home': (context) => HomePage(
+              initialPath: "dashboard",
+            ),
+        '/home/dashboard': (context) => HomePage(
+              initialPath: "dashboard",
+            ),
+        '/home/mytryb': (context) => HomePage(
+              initialPath: "mytryb",
+            ),
+        '/home/add': (context) => HomePage(
+              initialPath: "add",
+            ),
+        '/home/favorites': (context) => HomePage(
+              initialPath: "favorites",
+            ),
+        '/home/notifications': (context) => HomePage(
+              initialPath: "notifications",
+            ),
       },
     );
   }
