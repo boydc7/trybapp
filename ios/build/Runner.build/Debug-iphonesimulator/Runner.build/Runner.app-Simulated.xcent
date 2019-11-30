@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>FAKETEAMID.com.trybglobal.trybapp</string>
+	<string>F9976G3SE8.com.trybglobal.trybapp</string>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>FAKETEAMID.com.trybglobal.trybapp</string>
+		<string>F9976G3SE8.com.trybglobal.trybapp</string>
 	</array>
 </dict>
 </plist>

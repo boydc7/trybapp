@@ -1,0 +1,20 @@
+dependencies: \
+  /Users/chad/src/tryb/trybapp/ios/Runner/GeneratedPluginRegistrant.m \
+  /Users/chad/src/tryb/trybapp/ios/Runner/GeneratedPluginRegistrant.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Modules/module.modulemap \
+  /Users/chad/src/tryb/trybapp/ios/Pods/Firebase/CoreOnly/Sources/module.modulemap \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterTexture.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterPlugin.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterEngine.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterDartProject.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterBinaryMessenger.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterViewController.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterPluginAppLifeCycleDelegate.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterPlatformViews.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterHeadlessDartRunner.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterChannels.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterCallbackCache.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterCodecs.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterMacros.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/FlutterAppDelegate.h \
+  /Users/chad/src/tryb/trybapp/ios/Flutter/Flutter.framework/Headers/Flutter.h

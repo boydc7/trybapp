@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cached_network_image:
+  cached_network_image: ^2.0.0-rc
   cloud_firestore:
   cupertino_icons:
   device_info:
@@ -19,6 +19,7 @@ dependencies:
   firebase_core:
   firebase_messaging:
   flutter_facebook_login:
+  flutter_slidable:
   flutter_svg:
   flutter_tags:
   flutter_typeahead:

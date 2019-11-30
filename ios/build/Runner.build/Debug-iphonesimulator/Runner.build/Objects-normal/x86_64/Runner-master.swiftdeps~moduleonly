@@ -1,5 +1,5 @@
 version: "Apple Swift version 5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
-options: "e80cbeca12dc647c351a8f4d71bc22aa"
-build_time: [1575056012, 102975000]
+options: "fc67edd1e0cb8ddf83ff72d6cf72fe77"
+build_time: [1575070467, 70610000]
 inputs:
   "/Users/chad/src/tryb/trybapp/ios/Runner/AppDelegate.swift": [1574826204, 303998536]

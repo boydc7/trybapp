@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:trybapp/views/notifications.dart';
 
 import 'add.dart';
 import 'dashboard.dart';
+import 'favorites.dart';
+import 'mytryb.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({
@@ -35,12 +38,12 @@ class _HomePageState extends State<HomePage> {
         return AddPage();
       case "dashboard":
         return DashboardPage();
-      // case "favorites":
-      //   return FavoritesPage();
-      // case "mytryb":
-      //   return MyTrybPage();
-      // case "notifications":
-      //   return NotificationsPage();
+      case "favorites":
+        return FavoritesPage();
+      case "mytryb":
+        return MyTrybPage();
+      case "notifications":
+        return NotificationsPage();
       default:
         return DashboardPage();
     }

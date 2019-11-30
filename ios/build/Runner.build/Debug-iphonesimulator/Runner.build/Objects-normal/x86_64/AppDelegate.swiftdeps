@@ -104,6 +104,10 @@ depends-member:
 - ["So23UIUserActivityRestoringP", ""]
 - !private ["So23UIUserActivityRestoringP", "application"]
 - !private ["So23UIUserActivityRestoringP", "init"]
+- !private ["So32UNUserNotificationCenterDelegateP", "GeneratedPluginRegistrant"]
+- ["So32UNUserNotificationCenterDelegateP", ""]
+- !private ["So32UNUserNotificationCenterDelegateP", "application"]
+- !private ["So32UNUserNotificationCenterDelegateP", "init"]
 - !private ["10Foundation27_KeyValueCodingAndObservingP", "GeneratedPluginRegistrant"]
 - ["10Foundation27_KeyValueCodingAndObservingP", "LaunchOptionsKey"]
 - ["10Foundation27_KeyValueCodingAndObservingP", ""]
@@ -135,6 +139,7 @@ depends-nominal:
 - "So11UIResponderC"
 - "So30UIResponderStandardEditActionsP"
 - "So23UIUserActivityRestoringP"
+- "So32UNUserNotificationCenterDelegateP"
 - "10Foundation27_KeyValueCodingAndObservingP"
 - "10Foundation37_KeyValueCodingAndObservingPublishingP"
 depends-dynamic-lookup:
