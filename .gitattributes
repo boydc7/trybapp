@@ -2,3 +2,4 @@
 *.* linguist-detectable=false
 *.md linguist-detectable=false
 *.yaml linguist-detectable=false
+*.rb linguist-detectable=false
