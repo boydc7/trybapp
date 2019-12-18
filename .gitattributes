@@ -1,4 +1,4 @@
 *.dart linguist-detectable=true
-*. linguist-detectable=false
+*.* linguist-detectable=false
 *.md linguist-detectable=false
 *.yaml linguist-detectable=false
